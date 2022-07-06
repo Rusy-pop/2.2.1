@@ -15,14 +15,14 @@ public class UserDaoImp implements UserDao {
     private SessionFactory sessionFactory;
 
     @Override
-    public void add(User user) {
+    public void addUserFromDB(User user) {
         if (user.getCar()!= null) sessionFactory.getCurrentSession().persist(user.getCar());
         sessionFactory.getCurrentSession().persist(user);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<User> listUsers() {
+    public List<User> getListOfUsers() {
         TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
         return query.getResultList();
     }
